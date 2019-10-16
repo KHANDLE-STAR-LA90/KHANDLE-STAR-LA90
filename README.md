@@ -25,7 +25,8 @@
     | Derived Variable #2 | X |  |  |
     
     Code to make a table:
-    ```code(| Derived Variable Name | SAS  | STATA  | R  |
+    ```
+    | Derived Variable Name | SAS  | STATA  | R  |
     | :---:   | :-: | :-: | :-: |
     | Derived Variable #1 | X |  | X |
     | Derived Variable #2 | X |  |  |
