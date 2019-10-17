@@ -8,7 +8,7 @@ Standard language for manuscripts:
 
 		1. Asian
 		2. Black (not African American)
-		3. Latino (not Hispanic)
+		3. Latinx (not Hispanic)
 		4. White (not Caucasian)
 		
 * Based primarily on `racen` from tracking (self-reported Kaiser race) and modified based on race/ethnicity responses (`ethnicity1`-`ethnicity22`) in W1 baseline survey
@@ -22,11 +22,11 @@ Standard language for manuscripts:
 Not applicable; will be exported and distributed with all datasets
 
 ## Output Variables
-1. `W1_race_summary` - categorical summary variable with primary enrollment race categories (Latino->Black->Asian->White). 
+1. `W1_d_race_summary` - categorical summary variable with primary enrollment race categories (Latinx->Black->Asian->White). 
 	*Each participant is assigned to 1 race including multiracial individuals*.
-2. `W1_race_dummy_x` - 0/1 dummy variables (4 total: Asian, Black, Latino, White) for each racial/ethnic category; 
+2. `W1_d_race_dummy_x` - 0/1 dummy variables (4 total: Asian, Black, Latinx, White) for each racial/ethnic category; 
 	*mixed-race individuals will have values for multiple (e.g. someone who is black and white will have values of 1 for both `W1_race_dummy_black` and `W1_race_dummy_white`)*
-3. `W1_race_mixed` - 0/1 indicator variable for whether mixed-race individual, for use in conjunction with other output variables. 
+3. `W1_d_race_mixed` - 0/1 indicator variable for whether mixed-race individual, for use in conjunction with other output variables. 
 	*Note: Calculated using overall dummy race categories and not sum of ethnicities because we don't want to count someone who's Mexican and Nicaraguan as being multirace, but we would want to count someone who's Mexican and Chinese.*
 
 ## Created by
