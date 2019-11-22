@@ -10,6 +10,8 @@
 * **Don't upload data!** Be careful to never upload datasets or a workspace that may contain KHANDLE data, this is for code sharing _only_
 
 ## Adding Brand New Code
+* Create a folder for your script in the appropriate directory/subdirectory
+* Create a README for the folder that contains your script so others know what your code does
 * In the README, the following should be noted:
   * Decision History
     * e.g. if you decided to drop or recode any responses for a summary measure, include justification why
@@ -34,7 +36,7 @@
   * e.g. if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
 
 ## Just here to upload existing code in a new language?
-* Just upload into the relevant folder and update the readme!
+* Just upload into the relevant folder and **update the readme!**
 
 ## Found an issue/have a question on some uploaded code?
 * File an "issue" and the author of the code will be notified directly!  Have a back-and-forth on GitHub until the author marks the issue officially resolved.
@@ -52,3 +54,12 @@ These links might help, but remember that if you're just here to use code, you c
 * SAS:  Integrated into SAS 9.4
 * STATA:  Need desktop git client
 * R:  Built into RStudio
+
+## Need more help?
+Contact
+Crystal Shaw
+PhD Student, *UCLA Biostatistics*
+Graduate Student Researcher, *Mayeda Research Group (UCLA Epi)*
+UCLA Fielding School of Public Health
+c.shaw@ucla.edu
+
