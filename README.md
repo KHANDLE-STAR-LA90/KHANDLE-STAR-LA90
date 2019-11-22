@@ -56,10 +56,10 @@ These links might help, but remember that if you're just here to use code, you c
 * R:  Built into RStudio
 
 ## Need more help?
-Contact
-Crystal Shaw
-PhD Student, *UCLA Biostatistics*
-Graduate Student Researcher, *Mayeda Research Group (UCLA Epi)*
-UCLA Fielding School of Public Health
+Contact:<br>
+Crystal Shaw<br>
+PhD Student, *UCLA Biostatistics*<br>
+Graduate Student Researcher, *Mayeda Research Group (UCLA Epi)*<br>
+UCLA Fielding School of Public Health<br>
 c.shaw@ucla.edu
 
