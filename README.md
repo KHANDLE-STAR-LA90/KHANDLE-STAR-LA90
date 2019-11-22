@@ -11,6 +11,7 @@
 
 ## Adding Brand New Code
 * Create a folder for your script in the appropriate directory/subdirectory
+- The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
 * Create a README for the folder that contains your script so others know what your code does
 * In the README, the following should be noted:
   * Decision History
