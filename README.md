@@ -11,7 +11,6 @@
 
 ## Adding Brand New Code
 * In the README, the following should be noted:
-  * Date created
   * Decision History
     * e.g. if you decided to drop or recode any responses for a summary measure, include justification why
   * Source Variables
@@ -30,12 +29,15 @@
     | :---:   | :-: | :-: | :-: |
     | Derived Variable #1 | X |  | X |
     | Derived Variable #2 | X |  |  |
-  * Contact Information of Original/Most Recent Coder
+
 * Code should be well commented and compatable with KHANDLE datasets available to all
   * e.g. if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
 
 ## Just here to upload existing code in a new language?
 * Just upload into the relevant folder and update the readme!
+
+## Found an issue/have a question on some uploaded code?
+* File an "issue" and the author of the code will be notified directly!  Have a back-and-forth on GitHub until the author marks the issue officially resolved.
 
 ## New to Github?
 These links might help, but remember that if you're just here to use code, you can copy-and-paste directly from here:
