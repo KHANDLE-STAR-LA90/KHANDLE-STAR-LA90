@@ -1,1 +1,1 @@
-Variables related to every day discrimination
+Variables related to everyday discrimination
