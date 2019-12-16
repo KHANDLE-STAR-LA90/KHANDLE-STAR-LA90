@@ -84,7 +84,7 @@ If you're just here to use code, you can copy-and-paste directly from the Github
 
 ## Integration
 * SAS:  Integrated into SAS 9.4
-* STATA:  Need desktop git client
+* STATA:  Need desktop git client like GitKraken (https://support.gitkraken.com/how-to-install/)
 * R:  Built into RStudio
 
 ## Need more help?
