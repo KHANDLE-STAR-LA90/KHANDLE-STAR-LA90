@@ -42,7 +42,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
     For more help with markdown formatting, refer to this handy cheatsheet:  
     https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
     
-    **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file, type the name for your new directory first, then "/", then the file name.  For example, when creating 
+    **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file (after clicking "create new file"), type the name for your new directory first, then "/", then the file name.  For example, when creating a new directory named "New Folder" for my script named "New Script" within the KHANDLE measures directory, I would navigate to the KHANDLE measures directory, click "create new file" and in the box for naming my file, I would type: "New Folder/New Script"
 
 <br>
 3. Make sure your code is well commented and compatible with KHANDLE datasets available to all (if not in the restricted data
