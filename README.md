@@ -52,8 +52,24 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
   
   2. Update the coding language table in the README!
 
-## Found an issue/have a question on some uploaded code?
-* File an "issue" and the author of the code will be notified directly!  Have a back-and-forth on GitHub until the author marks the issue officially resolved.
+## Found an issue/have a question on some uploaded code or documentation?
+File an "issue" and the author of the code will be notified directly!  Have a back-and-forth on GitHub until the author marks the issue officially resolved.  
+
+To file an issue for code...
+
+  1. Click on the script you have a question about
+  
+  2. Within the script, click on the line number (or drag to highlight many lines) to specify which portion of the code you have questions on
+  
+  3. Click the ... icon and choose "Reference in new issue"
+  
+  4. Write up your question or comments
+  
+  5. Optional:  Assign the issue.  The original contributer will get a notification about the issue filed, but you can add other assignees to the issue if you'd like so that they get notified as well.
+  
+  6. Have a back and forth conversation until the issue is resolved and "closed"
+
+To comment on a markdown file... 
 
 ## New to Github?
 These links might help, but remember that if you're just here to use code, you can copy-and-paste directly from here:
