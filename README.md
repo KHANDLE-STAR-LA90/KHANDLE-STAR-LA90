@@ -6,7 +6,7 @@
 ## First Things First
 * This repository serves as a place for all of us to share our code, so we don't have to reinvent the wheel when sharing measures and analyses.
 * All code in the KHANDLE and STAR analyses and measures folders should be compatible with available KHANDLE datasets.
-* In some cases, code may require restricted data only available at Kaiser DOR. These scripts should be uploaded to the the appropriate measures or analyses subfolders within the Resctricted Data directory. 
+* In some cases, code may require restricted data only available at Kaiser DOR. These scripts should be uploaded to the the appropriate measures or analyses subfolders within the Restricted Data directory. 
 * **Don't upload data!** Be careful to never upload datasets or a workspace that may contain KHANDLE data, this is for code sharing _only_
 
 ## Adding Brand New Code
