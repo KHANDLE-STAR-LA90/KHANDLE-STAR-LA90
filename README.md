@@ -10,33 +10,42 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
 * **Don't upload data!** Be careful to never upload datasets or a workspace that may contain KHANDLE data, this is for code sharing _only_
 
 ## Adding Brand New Code
-* Find the appropriate directory/subdirectory for your code
-  * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures/Education
-  * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder STAR/Measures/Discrimination/Lifetime Discrimination <br> 
-  **Note:**  The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
-  * If an appropriate directory/subdirectory does not yet exist for your script, create one while making the README file for your code (see next step)
-* Create a README for the folder that contains your script so others know what your code does
-* In the README, the following should be noted:
-  * Decision History
-    * e.g. if you decided to drop or recode any responses for a summary measure, include justification why
-  * Source Variables
-  * Output (Derived) Variables 
-  	* Include the type of variable (is it categorical? 0/1 binary? continuous?)
-  * What language code is written in:
-
-    | Derived Variable Name | SAS  | STATA  | R  |
-    | :---:   | :-: | :-: | :-: |
-    | Derived Variable #1 | X |  | X |
-    | Derived Variable #2 | X |  |  |
+1. Find the appropriate directory/subdirectory for your code
+   * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures/Education
+   * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder STAR/Measures/Discrimination/Lifetime Discrimination <br> 
+   **Notes:**  
+     * The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
+     * Scripts within the Measures directory are used to create derived variables
+     * Scripts within the Analyses directory are used to reproduced analyses from papers published using KHANDLE/STAR data
+   * If an appropriate directory/subdirectory does not yet exist for your script, create one while making the README file for your code (see next step)
+   <br>
+2. Create a README.md file for the folder that contains your script so others know what your code does.  The README file should contain the following information: 
+   * Decision History<br>
+     e.g. if you decided to drop or recode any responses for a summary measure, include justification why
+   * Source Variables
+   * Output (Derived) Variables<br>
+  	  Include the type of variable (is it categorical? 0/1 binary? continuous?)
+   * What language code is written in:
+     
+      | Derived Variable Name | SAS  | STATA  | R  |
+      | :---:   | :-: | :-: | :-: |
+      | Derived Variable #1 | X |  | X |
+      | Derived Variable #2 | X |  |  |
     
-    Code to make a table:
-    ```
-    | Derived Variable Name | SAS  | STATA  | R  |
-    | :---:   | :-: | :-: | :-: |
-    | Derived Variable #1 | X |  | X |
-    | Derived Variable #2 | X |  |  |
+      Code to make a table:
+      ```
+      | Derived Variable Name | SAS  | STATA  | R  |
+      | :---:   | :-: | :-: | :-: |
+      | Derived Variable #1 | X |  | X |
+      | Derived Variable #2 | X |  |  |
+  
+    For more help with markdown formatting, refer to this handy cheatsheet:  
+    https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
+    
+    **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file, type the name for your new directory first, then "/", then the file name.  For example, when creating 
 
-* Code should be well commented and compatable with KHANDLE datasets available to all
+<br>
+3. Make sure your code is well commented and compatible with KHANDLE datasets available to all (if not in the restricted data
   * e.g. if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
 
 ## Just here to upload existing code in a new language?
