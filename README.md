@@ -48,7 +48,9 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
       Regarding compatibility: For example, if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
 
 ## Just here to upload existing code in a new language?
-* Just upload into the relevant folder and **update the readme!**
+  1. Upload your script into the relevant folder 
+  
+  2. Update the coding language table in the README!
 
 ## Found an issue/have a question on some uploaded code?
 * File an "issue" and the author of the code will be notified directly!  Have a back-and-forth on GitHub until the author marks the issue officially resolved.
