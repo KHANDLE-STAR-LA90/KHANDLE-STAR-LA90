@@ -91,7 +91,7 @@ If you're just here to use code, you can copy-and-paste directly from the Github
 Contact:<br>
 Crystal Shaw<br>
 PhD Student, *UCLA Biostatistics*<br>
-Graduate Student Researcher, *Mayeda Research Group (UCLA Epi)*<br>
+Graduate Student Researcher, *Mayeda Research Group (UCLA Epidemiology)*<br>
 UCLA Fielding School of Public Health<br>
 c.shaw@ucla.edu
 
