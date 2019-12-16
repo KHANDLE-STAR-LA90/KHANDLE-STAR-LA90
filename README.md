@@ -44,9 +44,8 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
     
     **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file (after clicking "create new file"), type the name for your new directory first, then "/", then the file name.  For example, when creating a new directory named "New Folder" for my script named "New Script" within the KHANDLE measures directory, I would navigate to the KHANDLE measures directory, click "create new file" and in the box for naming my file, I would type: "New Folder/New Script"
 
-<br>
-3. Make sure your code is well commented and compatible with KHANDLE datasets available to all (if not in the restricted data
-  * e.g. if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
+  3. Make sure your code is well-commented and compatible with KHANDLE datasets available to all (if not in the restricted data)<br>
+      Regarding compatibility: For example, if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
 
 ## Just here to upload existing code in a new language?
 * Just upload into the relevant folder and **update the readme!**
