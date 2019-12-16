@@ -13,8 +13,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
 * Find the appropriate directory/subdirectory for your code
   * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures/Education
   * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder STAR/Measures/Discrimination/Lifetime Discrimination <br> 
-  Note:  The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
-  <br>
+  **Note:**  The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
   * If an appropriate directory/subdirectory does not yet exist for your script, create one while making the README file for your code (see next step)
 * Create a README for the folder that contains your script so others know what your code does
 * In the README, the following should be noted:
