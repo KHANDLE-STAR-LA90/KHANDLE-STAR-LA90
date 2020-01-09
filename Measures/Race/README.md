@@ -8,7 +8,7 @@ Standard language for manuscripts:
 
 		1. Asian
 		2. Black (not African American)
-		3. Latinx (not Hispanic)
+		3. Latino (not Hispanic)
 		4. White (not Caucasian)
 		
 * Based primarily on `racen` from tracking (self-reported Kaiser race) and modified based on race/ethnicity responses (`ethnicity1`-`ethnicity22`) in W1 baseline survey
