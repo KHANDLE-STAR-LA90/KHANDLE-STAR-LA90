@@ -23,12 +23,12 @@ Paternal Variables:
 
 | Derived Variable Name | SAS  | STATA  | R  |
 | :---:   | :-: | :-: | :-: |
-| Derived Variable #1 |  | X |  |
-| Derived Variable #2 |  | X |  |
-| Derived Variable #3 |  | X |  |
-| Derived Variable #4 |  | X |  |
-| Derived Variable #5 |  | X |  |
-| Derived Variable #6 |  | X |  |
+| maternal_primary_education |  | X |  |
+| maternal_categorical_education |  | X |  |
+| maternal_education_level_NA |  | X |  |
+| paternal_primary_education |  | X |  |
+| paternal_categorical_education |  | X |  |
+| paternal_education_level_NA |  | X |  |
 
 
 
