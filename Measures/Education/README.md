@@ -17,6 +17,7 @@ W1_PATERNAL_EDUCATION
 W1_PATERNAL_EDUCATION_TEXT
 
 Coding language available:
+
 | Derived Variable Name | SAS  | STATA  | R  |
 | :---:   | :-: | :-: | :-: |
 | Derived Variable #1 |  | X |  |
