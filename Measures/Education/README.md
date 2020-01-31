@@ -5,7 +5,7 @@ January 31, 2020
 
 Decision history:
 
-I have three variables for both maternal and paternal education, years 0-12 coded as continuous, education beyond high school coded as ordinal, and an indicator for missingness (since this is a significant % of the sample). 
+I use three variables for both maternal and paternal education, years 0-12 coded as continuous, education beyond high school coded as ordinal, and an indicator for missingness (since this is a significant % of the sample). 
 
 This was decision made my Audra Gold, Maria Glymour, and Sarah Ackley. 
 
