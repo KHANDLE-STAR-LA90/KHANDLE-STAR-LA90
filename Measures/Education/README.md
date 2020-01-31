@@ -11,9 +11,11 @@ This was decision made my Audra Gold, Maria Glymour, and Sarah Ackley.
 
 Source variables:
 
+Maternal Variables:
 *W1_MATERNAL_EDUCATION
 *W1_MATERNAL_EDUCATION_TEXT
 
+Paternal Variables:
 *W1_PATERNAL_EDUCATION
 *W1_PATERNAL_EDUCATION_TEXT
 
