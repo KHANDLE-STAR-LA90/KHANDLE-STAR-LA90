@@ -87,6 +87,7 @@ If you're just here to use code, you can copy-and-paste directly from the Github
   * R: https://www.udacity.com/course/version-control-with-git--ud123
 
 ## Integration
+This is an optional step that will allow you to push and pull code from GitHub straight into your preferred coding interface.  You can still use GitHub by copying and pasting if you do not choose to integrate your software with it.
 * SAS:  Integrated into SAS 9.4
 * STATA:  Need desktop git client like GitKraken (https://support.gitkraken.com/how-to-install/)
 * R:  Built into RStudio
