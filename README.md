@@ -43,8 +43,12 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
     https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
     
     **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file (after clicking "create new file"), type the name for your new directory first, then "/", then the file name.  For example, when creating a new directory named "New Folder" for my script named "New Script" within the KHANDLE measures directory, I would navigate to the KHANDLE measures directory, click "create new file" and in the box for naming my file, I would type: "New Folder/New Script"
+  
+  3. Once your README is created, create a new file to copy and paste your code into.
+  
+  4. Give your file the name that matches the variable derived by your code and add the appropriate file extension for the language your code is in.
 
-  3. Make sure your code is well-commented and compatible with KHANDLE datasets available to all (if not in the restricted data)<br>
+  5. Make sure your code is well-commented and compatible with KHANDLE datasets available to all (if not in the restricted data)<br>
       Regarding compatibility: For example, if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
 
 ## Just here to upload existing code in a new language?
