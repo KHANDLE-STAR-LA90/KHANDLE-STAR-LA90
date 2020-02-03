@@ -46,7 +46,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
   
   3. Once your README is created, create a new file to copy and paste your code into.
   
-  4. Give your file the name that matches the variable derived by your code and add the appropriate file extension for the language your code is in.
+  4. Give your file the name that matches the variable derived by your code and add the appropriate file extension for the language your code is in: .R for R, .do for STATA, .sas for SAS
 
   5. Make sure your code is well-commented and compatible with KHANDLE datasets available to all (if not in the restricted data)<br>
       Regarding compatibility: For example, if you have previously created your own education variable to create an intergenerational education measure, either include that previous coding or code directly from the source variables
