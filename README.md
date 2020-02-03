@@ -44,7 +44,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
     
     **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file (after clicking "create new file"), type the name for your new directory first, then "/", then the file name.  For example, when creating a new directory named "New Folder" for my script named "New Script" within the KHANDLE measures directory, I would navigate to the KHANDLE measures directory, click "create new file" and in the box for naming my file, I would type: "New Folder/New Script"
   
-  3. Once your README is created, create a new file to copy and paste your code into.
+  3. Once your README is created, create a new file in that same directory to copy and paste your code into.
   
   4. Give your file the name that matches the variable derived by your code and add the appropriate file extension for the language your code is in: .R for R, .do for STATA, .sas for SAS
 
