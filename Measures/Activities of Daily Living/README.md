@@ -15,6 +15,7 @@ Excluding response='5' (Do not do this activity) from the average score (treatin
 | ADL | X |  |  |
 | IADL | X |  |  |
 | ADL_IADL | X |  |  |
+| Version (Date) | V1 (07/2019) | | | 
 
 ## Output Variables
 1. `ADL` - Average ADL score, for participants missing no ADL/IADL responses
