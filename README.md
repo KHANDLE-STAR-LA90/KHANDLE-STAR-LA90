@@ -31,6 +31,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
       | :---:   | :-: | :-: | :-: |
       | Derived Variable #1 | X |  | X |
       | Derived Variable #2 | X |  |  |
+      | Version (Date)  | V3 (02/05/20) |  | V1 (01/01/20) |
     
       Code to make a table:
       ```
@@ -38,6 +39,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
       | :---:   | :-: | :-: | :-: |
       | Derived Variable #1 | X |  | X |
       | Derived Variable #2 | X |  |  |
+      | Version (Date)  | V# (MM/DD/YY) |  | V# (MM/DD/YY) |
   
     For more help with markdown formatting, refer to this handy cheatsheet:  
     https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
