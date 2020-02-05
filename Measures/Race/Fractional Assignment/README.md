@@ -1,4 +1,4 @@
-# Fractional Assignment of Racial Categories (needs to be updated with new variable names and central dummy variables as of 10/15/19)
+# Fractional Assignment of Racial Categories
 
 ## Date Created
 April 18, 2019
@@ -17,7 +17,6 @@ Description of fractional assignment: https://texas-air.org/assets/pdf/TAIR%20DA
 ## Source Variables
 1. `W1_race_dummy_x` (x=asian, black, latino, white)
 
-
 ## Coding Language Available
 
 | Derived Variable Name | SAS  | STATA  | R  |
@@ -27,6 +26,7 @@ Description of fractional assignment: https://texas-air.org/assets/pdf/TAIR%20DA
 | race_latino | X |  |  |
 | race_white | X |  |  |
 | weight_race | X |  |  |
+| Version (Date) | V1 (04/18/2019) | | |
 
 ## Output Variables
 1. `race_x` - dummy variable for race represented here
