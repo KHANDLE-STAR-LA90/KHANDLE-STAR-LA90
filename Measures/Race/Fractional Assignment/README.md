@@ -35,6 +35,6 @@ Description of fractional assignment: https://texas-air.org/assets/pdf/TAIR%20DA
 
 ## Created by
 
-Chloe W. Eng, UCSF PhD Student
+Chloe W. Eng 
 
 chloe.eng@ucsf.edu / chloeeng208@gmail.com
