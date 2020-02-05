@@ -6,10 +6,10 @@ October 11, 2019
 ## Decision History
 Standard language for manuscripts:
 
-		1. Asian
-		2. Black (not African American)
-		3. Latino (not Hispanic)
-		4. White (not Caucasian)
+		1. Asian (and not Asian American)
+		2. Black (and not African American)
+		3. Latino (and not Hispanic)
+		4. White (and not Caucasian)
 		
 * Based primarily on `racen` from tracking (self-reported Kaiser race) and modified based on race/ethnicity responses (`ethnicity1`-`ethnicity22`) in W1 baseline survey
 
