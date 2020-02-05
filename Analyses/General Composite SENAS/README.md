@@ -5,7 +5,7 @@ Code to run mixed models for clustered measures (treating each SENAS domain as a
 
 ## What this code does
 * Uses datastep to create long dataset (where each participant has 3 cognitive scores, each representing separate domain)
-* Defines macro for mixed model with options to include title/output predicted values, fit statistics, and parameter information
+* Defines macro for mixed model with options to include title/output predicted values, fit statistics, and parameter information using random intercepts for each participant
 
 ## Date created:
 February 5, 2020
