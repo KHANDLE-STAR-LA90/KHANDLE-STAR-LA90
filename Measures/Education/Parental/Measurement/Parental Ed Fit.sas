@@ -5,9 +5,9 @@
 	%macro parented (var,parent);
 	length educ_&parent._full $ 20;
 	* 	MISSING INDICATOR ;
-		if W1_&var._EDUCATION=88 or W1_&var._EDUCATION=99 			then educ_&parent._miss=1; else educ_&parent._miss=0; 
+		if W1_&var._EDUCATION=88 or W1_&var._EDUCATION=99 		then educ_&parent._miss=1; else educ_&parent._miss=0; 
 	* 	FULL PARENT SPEC ;
-		if W1_&var._EDUCATION=88 or W1_&var._EDUCATION=99 			then do; educ_&parent._full_0=1; educ_&parent._full='0. Refused/DK'; 		end; else educ_&parent._full_0=0;
+		if W1_&var._EDUCATION=88 or W1_&var._EDUCATION=99 		then do; educ_&parent._full_0=1; educ_&parent._full='0. Refused/DK'; 		end; else educ_&parent._full_0=0;
 		if W1_&var._EDUCATION=0 and .<W1_&var._EDUCATION_TEXT=<8 	then do; educ_&parent._full_1=1; educ_&parent._full='1. 8th grade or less'; end; else educ_&parent._full_1=0;
 		if W1_&var._EDUCATION=0 and 8<W1_&var._EDUCATION_TEXT<12 	then do; educ_&parent._full_2=1; educ_&parent._full='2. HS, no degree'; 	end; else educ_&parent._full_2=0;
 		if W1_&var._EDUCATION=0 and W1_&var._EDUCATION_TEXT=12 		then do; educ_&parent._full_3=1; educ_&parent._full='3. HS degree'; 		end; else educ_&parent._full_3=0;
