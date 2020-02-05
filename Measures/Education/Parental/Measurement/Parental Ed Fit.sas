@@ -1,3 +1,5 @@
+	data khandle;
+	set  merged.khandle_baseline_kp_20191216; 
 /*	PARENT EDUCATION 	*/	
  *	%freq(w1_maternal_education_text*w1_maternal_education w1_paternal_education_text*w1_paternal_education);
 	%macro parented (var,parent);
@@ -28,3 +30,4 @@
 	%mend;
 	%concordance(HS); * %freq(educ_parent_HS); * %freq(educ_parent_HS*w1_maternal_education*w1_paternal_education);
 	%concordance(gr8);
+	run;
