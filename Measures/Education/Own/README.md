@@ -1,8 +1,8 @@
 ## Education_own_continuous.R
-Author: Fabian Corlier
-Lagnguage: R
-Date created: February, 6 2020
-Questions can be sent to: fcorlier@ucla.edu
+Author: Fabian Corlier <br>
+Lagnguage: R <br>
+Date created: February, 6 2020 <br>
+Questions can be sent to: fcorlier@ucla.edu <br>
 
 ## Decision history:
 I convert educational attainment in a continuous variable that accounts for years until highschool (already continuous in the dataset) and complete with the ordinal variable W1_EDU_EDUCATION coded 0 to 5 into corresponding numbers of years (see bellow)
@@ -29,7 +29,7 @@ W1_EDU_LONGCERT
 TRUECERT has the respondent a vocational degree yes/no (used to construct the yrEDCUATION variable)
 yrEDUCATION number of years of education 
 
-## pseudo code:
+## Pseudo code:
 W1_EDU_EDUCATION contains the categorical advanced education (0 = none to 5=PhD and equivalent)
 W1_EDU_EDUCATION_TEXT contains years of educ. for those who have <= 12 years of education
 W1_EDU_TRNCERT has the respondent any additional training no: 0, self-taught: 1, or formally trained: 2)
