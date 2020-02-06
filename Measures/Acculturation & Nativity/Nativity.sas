@@ -35,3 +35,10 @@
 			foreignborn_mothers_mother="Whether mother's mother born in US (0=US, 1=Foreign Born, 99 if refused or unknown)"
 			secondgen="Participant was born in US but parents were not";
 			immigration_gen="1=participant foreign born; 2=participant second generation (at least 1 parent foreign born); 3=both parents born in US";
+/*	Age at Immigration ----------------------------------------------------------------------------------------------- */
+	length age_immigration_cat $ 21;
+	if 0<=W1_D_AGE_IMMIGRATION<=13 and foreignborn=1  then do; age_immigration_cat="Age immigrated: 00-13"; age_immigration_catn=1; end; 
+	if 14<=W1_D_AGE_IMMIGRATION<=18 and foreignborn=1 then do; age_immigration_cat="Age immigrated: 14-18"; age_immigration_catn=2; end;
+	else if W1_D_AGE_IMMIGRATION>18 and foreignborn=1 then do; age_immigration_cat="Age immigrated: Adult"; age_immigration_catn=3; end;
+	else if foreignborn=0 then do; age_immigration_cat="US born"; age_immigration_catn=0; end;
+	format age_immigration_catn age_immigration_catn.;
