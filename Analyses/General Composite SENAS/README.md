@@ -1,7 +1,7 @@
 # Composite z-score SENAS models
 
 ## Overview
-Code to run mixed models for clustered measures (treating each SENAS domain as a clustered measure within an individual) to test for differences across domains.
+Code to run mixed models for clustered measures (treating each SENAS domain as a clustered measure within an individual) to test for differences across domains (using SENAS score x exposure interaction).
 
 ## What this code does
 * Uses datastep to create long dataset (where each participant has 3 cognitive scores, each representing separate domain)
