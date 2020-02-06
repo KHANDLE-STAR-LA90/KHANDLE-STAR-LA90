@@ -1,8 +1,13 @@
-## Education_own_continuous.R
-Author: Fabian Corlier <br>
-Lagnguage: R <br>
+## Education_own_continuous
 Date created: February, 6 2020 <br>
-Questions can be sent to: fcorlier@ucla.edu <br>
+
+### Languages available
+Script name | SAS | STATA | R |
+__________________________________________________________________
+Edcuation_own_continuous | | |X |
+Version and date | | |V1 Feb6,2020 |
+Author| | | Fabian Corlier|
+Questions can be sent to:| | | fcorlier@ucla.edu |
 
 ## Decision history:
 I convert educational attainment in a continuous variable that accounts for years until highschool (already continuous in the dataset) and complete with the ordinal variable W1_EDU_EDUCATION coded 0 to 5 into corresponding numbers of years (see bellow)
