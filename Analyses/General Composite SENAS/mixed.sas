@@ -8,6 +8,7 @@
 /*	Regression Analyses															*/
 /*																				*/
 /*------------------------------------------------------------------------------*/ 
+
 	%macro mixed (covs=,class=,where=,title=,betas=,FS=,CovParms=); 
 	proc mixed data=long noclprint covtest method=ml;
 	class studyid cogtype &class.; 
