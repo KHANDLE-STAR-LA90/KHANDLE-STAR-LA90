@@ -7,7 +7,7 @@ Code to create acculturation/nativity measures for KHANDLE particpants, parents,
 October 17, 2019
 
 ## Decision history:
-Created second generation category as "any" parent foreign-born as decided by C.W. Eng, O.L. Meyer, and M. Ko.
+Created second generation category as "any" parent foreign-born as decided by C.W. Eng, O.L. Meyer, and M.J. Ko.
 
 ## Source variables: 
 1. `W1_COUNTRY_BORN`
