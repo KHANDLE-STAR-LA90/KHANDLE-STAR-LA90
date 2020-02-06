@@ -29,6 +29,6 @@
 
 /*	Intercept Model	*/
 	%mixed(covs=,class=,where=,title=,betas=,FS=,CovParms=);  
- 
+  
 /*	Example Model	*/
 	%mixed(covs=|W1_D_RACE_SUMMARY &covs0,class=W1_D_RACE_SUMMARY,where=,title=,betas=%betas(example),FS=%FS(example),CovParms=%CovParms(example));  
