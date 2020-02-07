@@ -5,9 +5,9 @@ Date created: February, 6 2020 <br>
 
 | Script name | SAS  | STATA  | R  |
 | :---:   | :-: | :-: | :-: |
-|Edcuation_own_continuous | | |X |
-|Version and date | | |V1 Feb6,2020 |
-|Author| | | Fabian Corlier|
+|Edcuation_own_continuous | X | |X |
+|Version and date | V1 (02/06/20) | |V1 Feb6,2020 |
+|Author| C.W. Eng | | Fabian Corlier|
 |Questions can be sent to:| | | fcorlier@ucla.edu |
 ____________________________________________________________
 ## Decision history:
