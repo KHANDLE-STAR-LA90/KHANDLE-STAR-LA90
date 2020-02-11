@@ -31,4 +31,5 @@ This file serves as a copy-paste template to create measure- or analysis-specifi
 
 ## Created by
 *NAME*
+
 *E-MAIL/PHONE*
