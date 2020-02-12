@@ -1,4 +1,3 @@
-
 /*	Frequency Check Macro */
 	%macro freq_K1STATE (vars); proc freq data=khandle_1_state; var &vars. / list missing; run; %mend;
 
@@ -30,13 +29,13 @@
  *	3. Coding Census Region ; 
 	length W1_US_REGION_BORN $ 12; 
 	if usborn=0 then W1_US_REGION_BORN="Foreign Born";
-	if 	W1_US_STATE_abbr_full in ('HI','AZ','CA','NV','NM','UT','CO','WY','ID','MT','WA','OR') then do; 
+	if 	W1_US_STATE_abbr_full in ('HI','AZ','CA','NV','NM','UT','CO','WY','ID','MT','WA','OR') and usborn=1 then do; 
 		W1_US_REGION_BORN='West'; W1_US_REGION_BORN_WEST=1; end; else W1_US_REGION_BORN_WEST=0;
-	if 	W1_US_STATE_abbr_full in ('TX','OK','AR','LA','MS','AL','TN','KY','WV','MD','DE','DC','VA','NC','SC','GA','FL')then do; 
+	if 	W1_US_STATE_abbr_full in ('TX','OK','AR','LA','MS','AL','TN','KY','WV','MD','DE','DC','VA','NC','SC','GA','FL') and usborn=1 then do; 
 		W1_US_REGION_BORN='South'; W1_US_REGION_BORN_SOUTH=1; end; else W1_US_REGION_BORN_SOUTH=0;
-	if 	W1_US_STATE_abbr_full in ('NY','PA','NJ','CT','RI','MA','VT','NH','ME')then do; 
+	if 	W1_US_STATE_abbr_full in ('NY','PA','NJ','CT','RI','MA','VT','NH','ME') and usborn=1 then do; 
 		W1_US_REGION_BORN='Northeast'; W1_US_REGION_BORN_NORTHEAST=1; end; else W1_US_REGION_BORN_NORTHEAST=0;
-	if 	W1_US_STATE_abbr_full in ('ND','SD','NE','KS','MN','IA','MO','WI','IL','IN','OH','MI')then do; 
+	if 	W1_US_STATE_abbr_full in ('ND','SD','NE','KS','MN','IA','MO','WI','IL','IN','OH','MI') and usborn=1 then do; 
 		W1_US_REGION_BORN='Midwest'; W1_US_REGION_BORN_MIDWEST=1; end; else W1_US_REGION_BORN_MIDWEST=0;
 	* %freq_K1STATE(W1_US_STATE_abbr_full*W1_US_REGION_BORN;
 	* %freq_K1STATE(W1_US_REGION_BORN*W1_US_REGION_BORN_WEST*W1_US_REGION_BORN_SOUTH*W1_US_REGION_BORN_NORTHEAST*W1_US_REGION_BORN_MIDWEST;
