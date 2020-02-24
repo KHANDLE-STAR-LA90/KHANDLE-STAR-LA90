@@ -8,6 +8,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
 * All code in the KHANDLE and STAR analyses and measures folders should be compatible with available KHANDLE datasets.
 * In some cases, code may require restricted data only available at Kaiser DOR. These scripts should be uploaded to the the appropriate measures or analyses subfolders within the Restricted Data directory. 
 * **Don't upload data!** Be careful to never upload datasets or a workspace that may contain KHANDLE data, this is for code sharing _only_
+* To facilitate collaboration among KHANDLE/STAR researchers, we have created a [KHANDLE coding style guide](KHANDLE_style_guide.md) with best practices for variable and file naming as well as some considerations for output.
 
 ## Adding Brand New Code
 1. Find the appropriate directory/subdirectory for your code
