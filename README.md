@@ -19,7 +19,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
      * Scripts within the Analyses directory are used to reproduced analyses from papers published using KHANDLE/STAR data
    * If an appropriate directory/subdirectory does not yet exist for your script, create one based on the list of [KHANDLE/STAR study category prefixes](prefix_list.md) while making the README file for your code (see next step)
    <br>
-2. Create a README.md file based on this [template](example README template.md) for the folder that contains your script so others know what your code does.  The README file should contain the following information: 
+2. Create a README.md file based on this [template](example_README_template.md) for the folder that contains your script so others know what your code does.  The README file should contain the following information: 
    * Decision History<br>
      e.g. if you decided to drop or recode any responses for a summary measure, include justification why
    * Source Variables
