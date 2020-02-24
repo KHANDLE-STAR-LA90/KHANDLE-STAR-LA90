@@ -11,15 +11,15 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
 
 ## Adding Brand New Code
 1. Find the appropriate directory/subdirectory for your code
-   * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures/Education
-   * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder STAR/Measures/Discrimination/Lifetime Discrimination <br> 
+   * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures/EDU
+   * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder STAR/Measures/DISC_LIFE <br> 
    **Notes:**  
      * The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
      * Scripts within the Measures directory are used to create derived variables
      * Scripts within the Analyses directory are used to reproduced analyses from papers published using KHANDLE/STAR data
-   * If an appropriate directory/subdirectory does not yet exist for your script, create one while making the README file for your code (see next step)
+   * If an appropriate directory/subdirectory does not yet exist for your script, create one based on the list of [KHANDLE/STAR study category prefixes](prefix_list.md) while making the README file for your code (see next step)
    <br>
-2. Create a README.md file for the folder that contains your script so others know what your code does.  The README file should contain the following information: 
+2. Create a README.md file based on this [template](example README template.md) for the folder that contains your script so others know what your code does.  The README file should contain the following information: 
    * Decision History<br>
      e.g. if you decided to drop or recode any responses for a summary measure, include justification why
    * Source Variables
@@ -44,7 +44,7 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
     For more help with markdown formatting, refer to this handy cheatsheet:  
     https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
     
-    **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file (after clicking "create new file"), type the name for your new directory first, then "/", then the file name.  For example, when creating a new directory named "New Folder" for my script named "New Script" within the KHANDLE measures directory, I would navigate to the KHANDLE measures directory, click "create new file" and in the box for naming my file, I would type: "New Folder/New Script"
+    **Note:** If you need to create a directory/subdirectory for your scripts first, in the box where you would normally name your file (after clicking "create new file"), type the name for your new directory, then "/", then the file name.  For example, when creating a new directory named "New Folder" for my script named "New Script" within the KHANDLE measures directory, I would navigate to the KHANDLE measures directory, click "create new file" and in the box for naming my file, I would type: "New Folder/New Script". The Measures folder is organized by KHANDLE/STAR study category prefixes found in this [list](prefix_list.md).
   
   3. Once your README is created, create a new file in that same directory to copy and paste your code into.
   
