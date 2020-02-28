@@ -25,6 +25,7 @@ MATERNAL|	data about mother: education and employment
 MHC|	Multi-Phasic Health Cohort data
 MOTHER|	data about mother
 NIHTLBX|	NIH Toolbox data
+OTHER|does not belong in existing categories
 PA|	physical activity
 PAIN|	pain, includes subtypes such as degree, cause and location
 PATERNAL|	data about father: education and employment
