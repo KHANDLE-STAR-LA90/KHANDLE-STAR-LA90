@@ -25,7 +25,7 @@ April 2020 - changed to include z-standardization of final measures
 | grip_dominant | x |  | |
 | grip_nondominant | x |  | |
 | WLKTIME_AVG | x |  | | 
-| Version (Date) | V1 (01/14/20) | | |
+| Version (Date) | V2 (05/19/20) | | |
 
 ## Output variables: 
 1. `grip_dominant` - average of 3 grip strength trials for the participant's self-reported dominant hand
