@@ -9,6 +9,8 @@ January 14, 2020
 ## Decision history:
 Created grip strength as average of 3 trials for those who completed all 3 trials and walk speed as average of 2 trials for those who completed both trials as decided by C.W. Eng, M.L. Chan, S.F. Farias
 
+April 2020 - changed to include z-standardization of final measures
+
 ## Source variables: 
 1. `W1_PHYS_GRIPDOM`
 2. `W1_PHYS_GRIPR1`
