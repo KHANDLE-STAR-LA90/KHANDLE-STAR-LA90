@@ -98,15 +98,15 @@ This is an optional step that will allow you to push and pull code from GitHub s
 ## For access requests
 Contact:<br>
 Yingyan Wu<br>
-MS Student, *UCLA Epidemiology*<br>
+PhD Student, *UCLA Epidemiology*<br>
 Graduate Student Researcher, *Mayeda Research Group (UCLA Epidemiology)*<br>
 UCLA Fielding School of Public Health<br>
-yingyanwu@g.ucla.edu
+yingyanwu@ucla.edu
 
 ## Need troubleshooting help?
 Contact:<br>
 Crystal Shaw<br>
-PhD Student, *UCLA Biostatistics*<br>
+PhD Candidate, *UCLA Biostatistics*<br>
 Graduate Student Researcher, *Mayeda Research Group (UCLA Epidemiology)*<br>
 UCLA Fielding School of Public Health<br>
 c.shaw@ucla.edu
