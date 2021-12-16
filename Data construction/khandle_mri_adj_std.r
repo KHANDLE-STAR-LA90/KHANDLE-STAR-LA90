@@ -1,7 +1,7 @@
 #---- Script Info----
 #Author: Joey F.
 #Date Updated: Dec/16/2021
-#Basic info: This script regresses MRI ROI's against total intracranial volume 
+#Basic info: This script regresses KHANDLE MRI ROI's against total intracranial volume 
 #(adjusts for head size), outputs the residuals, and standardizes the residuals. 
 #This script standardizes residuals using the Blom method (what DM suggested) 
 #and z-scores. 
