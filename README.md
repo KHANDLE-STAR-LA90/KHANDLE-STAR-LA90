@@ -81,6 +81,7 @@ To comment on a markdown file...<br>
 Comments on markdown files are not line-specific unless you're willing to sift through the version history of the file to find the specific commit that generated the line you'd like to comment on.  For now, it seems like the best solution would be to click on the file you'd like to comment on, click the history button, click on the latest commit title, and write a comment in the box you see at the end of the commit.  The author of the file will be notified, but you can also @mention other team members so they will be notified of your comment as well.
 
 ## New to Github?
+We have prepared a series of GitHub tutorials specific to the KHANDLE organization. You can find slides and resources [here](https://drive.google.com/drive/folders/1WPClgefMWRWZ7bnCJgEsAAJ70gPYmfyx?usp=sharing).  
 If you're just here to use code, you can copy-and-paste directly from the Github website; but if you're interested in all the cool features of Github's version control abilities, check out these links:
 * Git-based tutorials: https://try.github.io/
 * Don't know what words mean? https://www.atlassian.com/git
