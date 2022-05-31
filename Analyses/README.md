@@ -1,4 +1,4 @@
-# Share code to reproduce KHANDLE analyses!
+# Share code to reproduce KHANDLE/STAR/LA90 analyses!
 
 This directory is organized by code subject
 
