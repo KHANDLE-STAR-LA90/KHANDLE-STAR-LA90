@@ -5,19 +5,18 @@ Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
 
 ## First Things First
 * This repository serves as a place for all of us to share our code, so we don't have to reinvent the wheel when sharing measures and analyses.
-* All code in the KHANDLE and STAR analyses and measures folders should be compatible with available KHANDLE datasets.
+* All code in the analyses and measures (KHANDLE/STAR/LA90) folders should be compatible with the corresponding datasets.
 * In some cases, code may require restricted data only available at Kaiser DOR. These scripts should be uploaded to the the appropriate measures or analyses subfolders within the Restricted Data directory. 
 * **Don't upload data!** Be careful to never upload datasets or a workspace that may contain KHANDLE data, this is for code sharing _only_
 * To facilitate collaboration among KHANDLE/STAR researchers, we have created a [KHANDLE coding style guide](KHANDLE_style_guide.md) with best practices for variable and file naming as well as some considerations for output.
 
 ## Adding Brand New Code
 1. Find the appropriate directory/subdirectory for your code
-   * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures/EDU
-   * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder STAR/Measures/DISC_LIFE <br> 
+   * Example:  Code for deriving an education measure in the KHANDLE study should be added to the folder Measures - KHANDLE/EDU
+   * Example:  Code for deriving a STAR-specific lifetime discrimination measure should be added to the folder Measures - STAR/DISC_LIFE <br> 
    **Notes:**  
-     * The STAR folder contains STAR-specific code, i.e. code that only works with access to the variables in the STAR study
      * Scripts within the Measures directory are used to create derived variables
-     * Scripts within the Analyses directory are used to reproduced analyses from papers published using KHANDLE/STAR data
+     * Scripts within the Analyses directory are used to reproduced analyses using KHANDLE/STAR/LA90 data
    * If an appropriate directory/subdirectory does not yet exist for your script, create one based on the list of [KHANDLE/STAR study category prefixes](prefix_list.md) while making the README file for your code (see next step)
    <br>
 2. Create a README.md file based on this [template](example_README_template.md) for the folder that contains your script so others know what your code does.  The README file should contain the following information: 
