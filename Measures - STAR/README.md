@@ -1,0 +1,1 @@
+Variables related to STAR
