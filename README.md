@@ -107,9 +107,9 @@ yingyanwu@ucla.edu
 
 ## Need troubleshooting help?
 Contact:<br>
-Crystal Shaw<br>
-PhD Candidate, *UCLA Biostatistics*<br>
+Juliet Zhou<br>
+PhD Student, *UCLA Biostatistics*<br>
 Graduate Student Researcher, *Mayeda Research Group (UCLA Epidemiology)*<br>
 UCLA Fielding School of Public Health<br>
-c.shaw@ucla.edu
+jyixzhou@g.ucla.edu
 
