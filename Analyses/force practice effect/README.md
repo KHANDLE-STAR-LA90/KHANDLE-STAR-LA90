@@ -24,5 +24,5 @@ if applicable
 ## Output variables:
 N/A
 
-## Created by
+## Created by: Ruijia Chen, UCSF
 
