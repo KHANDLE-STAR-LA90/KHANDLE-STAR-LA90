@@ -1,7 +1,7 @@
-![Picture](https://lh3.googleusercontent.com/A6qdMRZqcRQg9ooQl_pAmbKn_dM660Kyljj3gZxa8mSiUGQTwyKO2GEye1u1O1sUWwQhpT-j8pSC1ThT0y7sHLIBrkiSgg8RtmMP4qW_mbBxT9whk1aZzMw_bu1GGNxl5Lg_RINiFXOxGYQanYcgwNIAaO5rAjLWEOVY2CjgRzx90mTqd2dve_btYv648i6DxtSWt7nqakk7f8vGd59UhEb0BleGnKAnFTiXaLkVHbOB64_CZsbnqqh6ttX2-ivV82zTqlQTJ_UxXDk_nALt32ROy-sZU9HBzaspdYNpB7Y66MuG-5elciqRkWFlBAmtxloObkIkHav4ccMMvfP_3BfwlSaR3Wxc6V2eqZ_oFWj3UbvOfaG52FQTD9eGmlIBdjtoRvDoxaFCRlKUS_-7l2MbVsZ3wjkST5Oj46Hm_L3piZEMLUmuZ2xkuvMvaprBwmIgKmhkJ0G6Ii4etvnDPmbdNXw1Qysx2H2lURVRkcAHm9WPZSC9wI_CcnIKIGncNdt-Dd5wRPKMACCW7F0veycjtRHTM8FYPuxnyA7qOaspTT8NjSEZecSPpXNxHk-NIauqbQJ3jJYmBorzI8ha1JNWHC9Y8sRCsxrzWCe3HkBILSxH8d7fixY9PIxDFMNyki_iTebDP2vzTFH7xDMmK8sIof7bI7Lgd1_o4saQ3cMOlZLexBw3PAlFDPG1XXrO29uE3Cea1yHqznd64IOW7m9g1OUra6Ie2wrZs4CzeS0CbXInuQ=w705-h166-no)
+![image](https://user-images.githubusercontent.com/24285860/171511142-7e91f143-def8-4374-8655-a94d178520b9.png)
 
 ## General
-Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
+Basic KHANDLE/STAR/LA90 information: https://rachelwhitmer.ucdavis.edu/khandle
 
 ## First Things First
 * This repository serves as a place for all of us to share our code, so we don't have to reinvent the wheel when sharing measures and analyses.
