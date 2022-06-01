@@ -1,7 +1,9 @@
 ![image](https://user-images.githubusercontent.com/24285860/171511142-7e91f143-def8-4374-8655-a94d178520b9.png)
 
 ## General
-Basic KHANDLE/STAR/LA90 information: https://rachelwhitmer.ucdavis.edu/khandle
+Basic KHANDLE information: https://rachelwhitmer.ucdavis.edu/khandle
+Basic STAR information: https://rachelwhitmer.ucdavis.edu/lifeafter90
+Basic LA90 information: https://rachelwhitmer.ucdavis.edu/star
 
 ## First Things First
 * This repository serves as a place for all of us to share our code, so we don't have to reinvent the wheel when sharing measures and analyses.
