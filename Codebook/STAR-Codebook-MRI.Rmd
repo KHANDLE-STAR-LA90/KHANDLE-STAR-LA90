@@ -1,0 +1,194 @@
+---
+title: "STAR Codebook"
+subtitle: "MRI Data Summary"
+date: "09/01/2022"
+output: 
+  word_document: 
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE}
+library(tidyverse)
+library(haven)
+library(epiDisplay)
+library(readxl)
+```
+
+```{r load dataset and dictionary, message=FALSE, warning=FALSE, error=FALSE}
+path_to_box <- "/Users/julietzhou/Library/CloudStorage/Box-Box/"
+path_to_folder <- 
+  "STAR_coded_data/Raw_data_tables/STAR_MRI_data/STAR_MRI_2022Sep01/"
+
+# DTI data 
+dat_DTI <- read.delim(
+  paste0(path_to_box, path_to_folder, "summary_DTI_K-STAR_KHANDLE_082922_age.txt"), 
+  header = TRUE, sep = ""
+)
+
+# dropping the fifth column, which I can only guess is
+# BVALUE: number of diffusion volumes for each bvalue
+# but the values are hard to interpret and therefore not summarized
+dat_DTI_edit <- dat_DTI[, c(1,2,3,4,6,7,8)]
+names(dat_DTI_edit) <- c("Study", "ID", "FW", "FA", "Site", "Age_at_Date", "Date_PreCovid")
+
+# convert age, FW, and FA into numeric variables
+dat_DTI_edit <- dat_DTI_edit %>% 
+  mutate(
+    Age_at_Date = as.numeric(Age_at_Date),
+    FW = as.numeric(FW), 
+    FA = as.numeric(FA))
+
+# there are data entry errors for:
+# ID = K028791 does not have FW and FA values
+# ID = K076001 has wrong site format
+
+# manually add in the correct entries
+dat_DTI_edit <- dat_DTI_edit %>% 
+  filter(!ID %in% c("K028791", "K076001")) %>% 
+  add_row(
+    tibble(Study = "khandle", ID = "K028791", Site = "IRC", 
+           Age_at_Date = 85.84, Date_PreCovid = "0")) %>% 
+  add_row(
+    tibble(Study = "khandle", ID = "K076001", Site = "UC_Davis", 
+           FW = 0.236069, FA = 0.554519, 
+           Age_at_Date = 86.85, Date_PreCovid = "0"))
+
+# T1 data
+dat_T1 <- read_excel(
+  paste0(path_to_box, path_to_folder, "k-star_T1_analysis_052322_age.xlsx"))
+T1_var_labels <- tibble(
+  variable = names(dat_T1)[-c(1,2)],
+  label = c(
+    "3DT1 Image Quality (Good, Fair, Unanalyzable)", 
+    "FLAIR Image Quality (Good, Fair, Unanalyzable)",
+    "MRI Scanner Magnetic Field Strength (3 Tesla)", 
+    "MRI Scanner Manufacturer (SIEMENS)",
+    "MRI Scanner Model Name (TrioTim or Skyra)",
+    "Total Cranial Volume (Cubic Centimeters)",
+    "Total Brain Volumn (Cubic Centimeters)", 
+    "Total Cerebrospinal Fluid Volume (Cubic Centimeters)", 
+    "Total Gray Matter Volume (Cubic Centimeters)", 
+    "Total White Matter Volume (Cubic Centimeters)", 
+    "Segmented Left Hippocampus Volume (Cubic Centimeters)", 
+    "Segmented Right Hippocampus Volume (Cubic Centimeters)", 
+    "Segmented Total Hippocampus Volume (Cubic Centimeters)", 
+    "Segmented Left Lateral Ventricle Volume (Cubic Centimeters)", 
+    "Segmented Right Lateral Ventricle Volume (Cubic Centimeters)", 
+    "Segmented Total Lateral Ventricle Volume (Cubic Centimeters)", 
+    "Segmented Third Ventricle Volume (Cubic Centimeters)", 
+    "Segmented Frontal Cortical Gray Matter Volume (Cubic Centimeters)", 
+    "Segmented Occipital Cortical Gray Matter Volume (Cubic Centimeters)", 
+    "Segmented Parietal Cortical Gray Matter Volume (Cubic Centimeters)", 
+    "Segmented Temporal Cortical Gray Matter Volume (Cubic Centimeters)", 
+    "Total Cerebrospinal Fluid Volume (Cubic Centimeters)", 
+    "Total Gray Matter Volume (Cubic Centimeters)",
+    "Total White Matter Volume (Cubic Centimeters)", 
+    "Total Cerebrum White Matter Hyperintensity Volumn (Cubic Centimeters)", 
+    "Total Brain Volumn (Cubic Centimeters)",
+    "Analysis Status", 
+    "Age of participant at scan",
+    "Scan: Pre-COVID"
+  )
+)
+
+```
+
+\pagebreak
+
+Note:
+
+For each variable, the following information is pulled from the dictionary:
+
+*	Variable name
+*	Variable description
+*	Possible values and coding
+
+A frequency table is generated to accompany most of the variables, with the 
+following columns:
+
+*	Frequency
+*	%(NA+) and cum.%(NA+): relative and cumulative frequencies calculated from 
+  including the NA’s in the total
+*	%(NA-) and cum.%(NA-): relative and cumulative frequencies calculated from 
+  excluding the NA’s from the total
+
+If a variable is quantitative in nature, a histogram is used to replace the 
+frequency table, accompanied by the number of NA’s. 
+
+\pagebreak
+
+
+# T1 dataset
+
+```{r, eval = TRUE}
+for (var in names(dat_T1)[-c(1,2)]) {
+  if (var == "Status") {
+    cat(str_c(var, ": Analysis Status"), "\n")
+    tab1(dat_T1[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+  } else if (var == "Date_Precovid") {
+    cat(str_c(var, ": whether the scan was done before COVID-19 started."), "\n")
+    cat("1 = pre-COVID, 0 = after start of COVID", "\n")
+    tab1(dat_T1[var], graph = FALSE, cum.percent = TRUE) %>% print()
+   
+  } else if (var == "Age_at_Date") {
+    cat(str_c(var, ": Age of participant at scan"), "\n")
+    x <- dat_T1[var] %>% as_vector()
+    hist(x, main = paste(var))
+    
+  } else if (var %in% c("_3DT1_QC", "FLAIR_QC", "Field_Strength", 
+                        "Manufacturer","ModelName")) {
+    var_description <- T1_var_labels %>% filter(variable == var) %>% pull(label)
+    cat(str_c(var, ": ", var_description), "\n")
+    tab1(dat_T1[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+  } else {
+    var_description <- T1_var_labels %>% filter(variable == var) %>% pull(label)
+    cat(str_c(var, ": ", var_description), "\n")
+    x <- dat_T1[var] %>% as_vector()
+    hist(x, main = paste(var))
+  }
+  
+  cat("\n\n")
+}
+```
+
+# DTI dataset
+
+```{r, eval = TRUE}
+for (var in names(dat_DTI_edit)[-c(2)]) {
+  if (var == "Date_PreCovid") {
+    cat(str_c(var, ": whether the scan was done before COVID-19 started."), "\n")
+    cat("1 = pre-COVID, 0 = after start of COVID", "\n")
+    tab1(dat_DTI_edit[var], graph = FALSE, cum.percent = TRUE) %>% print()
+      
+  } else if (var == "Age_at_Date") {
+    cat(str_c(var, ": Age of participant at scan"), "\n")
+    x <- dat_DTI_edit[var] %>% as_vector()
+    hist(x, main = paste(var))
+    
+  } else if (var %in% c("FW", "FA")) {
+    label <- ifelse(var == "FW", 
+                    paste0("FW: Free water fraction computed within voxels ", 
+                           "from the WM mask (values between 0 and 1) \n"), 
+                    paste0("FA: Fractional anisotropy computed within voxels ", 
+                    "from the WM mask (values between 0 and 1) \n")
+                    )
+    cat(label)
+    x <- dat_DTI_edit[var] %>% as_vector()
+    hist(x, main = paste(var))
+  } else {
+    # study and site variables
+    cat(paste0(var, "\n"))
+    tab1(dat_DTI_edit[var], graph = FALSE, cum.percent = TRUE) %>% print()
+  }
+
+  cat("\n\n")
+}
+
+
+```

@@ -1,0 +1,695 @@
+---
+title: "KHANDLE Codebook"
+subtitle: "Wave 1 Summary"
+# author: "Juliet Yixuan Zhou"
+date: "07/14/2022"
+output:
+  word_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE}
+library(tidyverse)
+library(haven)
+library(epiDisplay)
+library(readxl)
+```
+
+```{r load dataset}
+path_to_box <- "/Users/julietzhou/Library/CloudStorage/Box-Box/"
+# update to the most recent data release
+date <- "20220714"
+path_to_folder <- "KHANDLE_coded_data/Raw_data_tables/All_Wave/transfer13_2022Jul15/"
+dat <- read_sas(
+  paste0(path_to_box, path_to_folder, "khandle_all_waves_", date, ".sas7bdat"))
+
+dat_w1 <- dat %>% dplyr::select(STUDYID, starts_with("W1"), WAVE1)
+# dat_w2 <- dat %>% dplyr::select(STUDYID, starts_with("W2"), WAVE2)
+# dat_w3 <- dat %>% dplyr::select(STUDYID, starts_with("W3"), WAVE3)
+# dat_lang <- dat %>% dplyr::select(STUDYID, starts_with("LANG"))
+# dat_mhc <- dat %>% dplyr::select(STUDYID, starts_with("mhc"))
+```
+
+```{r load data dictionary, message=FALSE, warning=FALSE}
+# load the data dictionary for variable name and variable description
+dictionary <- read_excel(
+  paste0(path_to_box, path_to_folder, 
+         "KHANDLE_All_Waves_", date, "_Data_Dictonary.xlsx"), 
+  .name_repair = "universal", 
+  sheet = "Data_Description", skip = 4) %>%
+  dplyr::select("PHI_check", 
+                "Variable...Name", "Variable...Description", "Values") %>% 
+  rename("var_name" = "Variable...Name", 
+         "var_desc" = "Variable...Description", 
+         "values"  = "Values")
+```
+
+
+\pagebreak
+
+Note:
+
+For each variable, the following information is pulled from the dictionary:
+
+*	Variable name
+*	Variable description
+*	Possible values and coding
+
+A frequency table is generated to accompany most of the variables, with the 
+following columns:
+
+*	Frequency
+*	%(NA+) and cum.%(NA+): relative and cumulative frequencies calculated from 
+  including the NA’s in the total
+*	%(NA-) and cum.%(NA-): relative and cumulative frequencies calculated from 
+  excluding the NA’s from the total
+
+If a variable is quantitative in nature, a histogram is used to replace the 
+frequency table, accompanied by the number of NA’s. 
+
+\pagebreak
+
+```{r codebook function}
+codebook <- function(data, var, categorical = TRUE, print.values = TRUE) {
+  var_description <- dictionary %>% 
+    filter(var_name == var) %>% 
+    # dplyr::select(var_desc)
+    pull(var_desc)
+  # var_description <- as.character(var_description)
+  var_values <- dictionary %>% 
+    filter(var_name == var) %>% 
+    # dplyr::select(values)
+    pull(values)
+  # var_values <- as.character(var_values)
+  # print out information to be included in the codebook
+  
+  print(str_c(var, ": ", var_description))
+  if (!is.na(var_values) & print.values) {print(var_values)}
+  
+  if(categorical) {
+    # print the frequency table
+    # with absolute, relative and cumulative frequencies
+    print(str_c("Frequency table of ", var))
+    tab1(data[var], graph = FALSE, cum.percent = TRUE) %>% print()
+  } else {
+    x <- data[var] %>% as_vector()
+    na_count <- sum(is.na(x))
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    try(hist(x, main = NULL, xlab = paste(var)))
+  }
+  
+  cat("\n\n")
+}
+```
+
+## Wave Information
+
+<br>
+
+```{r wave 1 info}
+w1_wave_info_vars <- c("WAVE1", "W1_ENROLLED", "W1_COMPLETED_AT", 
+                       "W1_TO_W2_DAYS", "W1_TO_W3_DAYS")
+codebook(dat_w1, "WAVE1")
+codebook(dat_w1, "W1_ENROLLED")
+codebook(dat_w1, "W1_COMPLETED_AT")
+codebook(dat_w1, "W1_TO_W2_DAYS", categorical = FALSE)
+codebook(dat_w1, "W1_TO_W3_DAYS", categorical = FALSE)
+all_vars <- w1_wave_info_vars
+```
+
+\pagebreak
+
+## Age at Interview
+
+<br>
+
+```{r age at interview}
+w1_age_at_intv <- "W1_INTERVIEW_AGE"
+codebook(dat_w1, w1_age_at_intv, categorical = FALSE)
+all_vars <- c(all_vars, w1_age_at_intv)
+```
+
+\pagebreak
+
+## Education
+
+<br>
+
+```{r w1 education}
+w1_edu_vars <- dat_w1 %>% names() %>% str_subset("W1_EDU|D_EDU")
+for (var in w1_edu_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_edu_vars)
+```
+
+\pagebreak
+
+## Occupational History
+
+<br>
+
+```{r w1 occupational history}
+w1_jobs_vars <- dat_w1 %>% names() %>% 
+  str_subset("WORK|JOB|_EMP_|MILLITARY") %>% 
+  str_subset("VOLUNTEER", negate = TRUE)
+codebook(dat_w1, "W1_FIRST_JOB_AGE")
+codebook(dat_w1, "W1_FIRST_JOB_AGE_YEARS", categorical = FALSE)
+for(var in w1_jobs_vars[3:24]) {
+  codebook(dat_w1, var)
+}
+for(var in c(w1_jobs_vars[25:38], "W1_MILITARY")) {
+  codebook(dat_w1, var, categorical = FALSE)
+}
+all_vars <- c(all_vars, w1_jobs_vars, "W1_MILITARY")
+```
+
+\pagebreak
+
+## Volunteer Work
+
+<br>
+
+```{r}
+w1_volunteer_vars <- dat_w1 %>% names() %>% str_subset("VOLUNTEER")
+for(var in w1_volunteer_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_volunteer_vars)
+```
+
+\pagebreak
+
+## Other Current Activities
+
+<br>
+
+```{r}
+w1_ca_vars <- dat_w1 %>% names() %>% str_subset("_CA_")
+for(var in w1_ca_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_ca_vars)
+```
+
+\pagebreak
+
+## Ethnicity
+
+<br>
+
+```{r}
+w1_ethn_vars <- dat_w1 %>% names() %>% str_subset("ETHNICITY|D_RACE")
+for(var in w1_ethn_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_ethn_vars)
+```
+
+\pagebreak
+
+## Immigration
+
+<br>
+
+```{r}
+w1_immigration_vars <- dat_w1 %>% names() %>% 
+  str_subset("COUNTRY_BORN|US_STATE|MX_STATE|AGE_MOVED_US|D_AGE_IMMIGRATION|MOTHER|FATHER")
+
+for(var in w1_immigration_vars[1:4]) {
+  codebook(dat_w1, var)
+}
+codebook(dat_w1, "W1_AGE_MOVED_US_AGE", categorical = FALSE)
+for(var in w1_immigration_vars[6:15]) {
+  codebook(dat_w1, var)
+}
+codebook(dat_w1, "W1_D_AGE_IMMIGRATION", categorical = FALSE)
+all_vars <- c(all_vars, w1_immigration_vars)
+```
+
+\pagebreak
+
+## Gender and Sexual Orientation
+
+<br>
+
+```{r}
+w1_gender_vars <- dat_w1 %>% names() %>% str_subset("GENDER|ORIENTATION")
+for(var in w1_gender_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_gender_vars)
+```
+
+\pagebreak
+
+## Marital Status
+
+<br>
+
+```{r}
+w1_marital_vars <- dat_w1 %>% names() %>% 
+  str_subset("MARITAL|SPOUSE|DIVORCE|MARRIAGE")
+for(var in w1_marital_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_marital_vars)
+```
+
+\pagebreak
+
+## Income and Financial Insecurity
+
+<br>
+
+```{r}
+w1_income_vars <- dat_w1 %>% names() %>% str_subset("INCOME")
+for(var in w1_income_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_income_vars)
+```
+
+\pagebreak
+
+## Residence History and Schools Attended
+
+<br>
+
+Some variables (including street address, city, and state) are marked PHI in the 
+dictionary, and therefore not summarized here. 
+
+```{r}
+w1_res_vars <- dat_w1 %>% names() %>% str_subset("_RES_") 
+w1_school_vars <- dat_w1 %>% names() %>% str_subset("_SCHOOL_") 
+for(var in c(w1_res_vars, w1_school_vars)) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_res_vars, w1_school_vars)
+```
+
+\pagebreak
+
+## Discrimination - Everyday
+
+<br>
+
+```{r}
+w1_disc_day_vars <- dat_w1 %>% names() %>% str_subset("DISC_DAY") 
+for(var in c("W1_DISCRIMINATION", w1_disc_day_vars)) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, "W1_DISCRIMINATION", w1_disc_day_vars)
+```
+
+\pagebreak
+
+## Discrimination - Lifetime
+
+<br>
+
+```{r}
+w1_disc_life_vars <- dat_w1 %>% names() %>% str_subset("DISC_LIFE") 
+for(var in w1_disc_life_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_disc_life_vars)
+```
+
+\pagebreak
+
+## Ladder
+
+<br>
+
+```{r}
+codebook(dat_w1, "W1_LADDER1")
+all_vars <- c(all_vars, "W1_LADDER1")
+```
+
+\pagebreak
+
+## Children
+
+<br>
+
+```{r}
+w1_children_vars <- dat_w1 %>% names() %>% 
+  str_subset("CHILDREN") %>% 
+  str_subset("CHILDHX", negate = TRUE)
+for(var in w1_children_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_children_vars)
+```
+
+\pagebreak
+
+## Siblings
+
+<br>
+
+```{r}
+w1_siblings_vars <- dat_w1 %>% names() %>% str_subset("SIBLINGS") 
+for(var in w1_siblings_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_siblings_vars)
+```
+
+\pagebreak
+
+## Relatives
+
+<br>
+
+```{r}
+w1_rel_vars <- dat_w1 %>% names() %>% str_subset("RELATIVES|_REL_") 
+for(var in w1_rel_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_rel_vars)
+```
+
+\pagebreak
+
+## Friends
+
+<br>
+
+```{r}
+w1_friends_vars <- dat_w1 %>% names() %>% str_subset("FRIENDS") 
+for(var in w1_friends_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_friends_vars)
+```
+
+\pagebreak
+
+## Confidante
+
+<br>
+
+```{r}
+w1_confidante_vars <- dat_w1 %>% names() %>% str_subset("CONFIDANTE") 
+for(var in w1_confidante_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_confidante_vars)
+```
+
+\pagebreak
+
+## Childhood Family History
+
+<br>
+
+```{r}
+w1_childhx_vars <- dat_w1 %>% names() %>% str_subset("CHILDHX")
+w1_mat_pat_vars <- dat_w1 %>% names() %>% str_subset("MATERNAL|PATERNAL")
+w1_gu_vars <- dat_w1 %>% names() %>% str_subset("GROWINGUP")
+for(var in c(w1_childhx_vars, w1_mat_pat_vars, w1_gu_vars)) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_childhx_vars, w1_mat_pat_vars, w1_gu_vars)
+```
+
+\pagebreak
+
+## Health
+
+<br>
+
+```{r}
+w1_equipment_vars <- dat_w1 %>% names() %>% str_subset("EQUIPMENT")
+for(var in c("W1_HEALTH", w1_equipment_vars)) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, "W1_HEALTH", w1_equipment_vars)
+```
+
+\pagebreak
+
+## Activities of Daily Living
+
+<br>
+
+```{r}
+w1_adl_vars <- dat_w1 %>% names() %>% str_subset("DAILY_LIVING")
+for(var in w1_adl_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_adl_vars)
+```
+
+\pagebreak
+
+## Physical Activity
+
+<br>
+
+```{r}
+w1_pa_vars <- dat_w1 %>% names() %>% str_subset("_PA_")
+for(var in w1_pa_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_pa_vars)
+```
+
+\pagebreak
+
+## Everyday Cognition
+
+<br>
+
+```{r}
+w1_ecog_vars <- dat_w1 %>% names() %>% str_subset("_ECOG_")
+for(var in w1_ecog_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_ecog_vars)
+```
+
+\pagebreak
+
+## Sleep
+
+<br>
+
+```{r}
+w1_sleep_vars <- dat_w1 %>% names() %>% str_subset("_SLEEP_")
+for(var in w1_sleep_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_sleep_vars)
+```
+
+\pagebreak
+
+## Self-Assessed Sensory Impairement
+
+<br>
+
+```{r}
+w1_sensimp_vars <- dat_w1 %>% names() %>% str_subset("_SENSIMP_")
+for(var in w1_sensimp_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_sensimp_vars)
+```
+
+\pagebreak
+
+## Head Injury
+
+<br>
+
+```{r}
+w1_headinj_vars <- dat_w1 %>% names() %>% str_subset("HEAD_INJURY")
+w1_headtra_vars <- dat_w1 %>% names() %>% str_subset("HEAD_TRAUMA")
+for(var in c(str_subset(w1_headinj_vars, "HOSP\\d"), 
+             "W1_HEAD_INJURY_EXPLOSION", "W1_HEAD_TRAUMA")) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_headinj_vars, w1_headtra_vars)
+```
+
+The following block of questions, from W1_HEAD_TRAUMA_AGE_START to 
+W1_HEAD_TRAUMA_DAZED are asked if HEAD_TRAUMA = 1:[Yes]. 
+
+```{r}
+for(var in str_subset(w1_headinj_vars, "HOSP\\d|EXPLOSION", negate = TRUE)) {
+  codebook(dat_w1, var)
+}
+codebook(dat_w1, "W1_HEAD_TRAUMA_AGE_START")
+codebook(dat_w1, "W1_HEAD_TRAUMA_AGE_START_TEXT", categorical = FALSE)
+codebook(dat_w1, "W1_HEAD_TRAUMA_AGE_END")
+codebook(dat_w1, "W1_HEAD_TRAUMA_AGE_END_TEXT", categorical = FALSE)
+codebook(dat_w1, "W1_HEAD_TRAUMA_UNCONSCIOUS")
+codebook(dat_w1, "W1_HEAD_TRAUMA_DAZED")
+```
+
+\pagebreak
+
+## Pain
+
+<br>
+
+```{r}
+w1_pain_vars <- dat_w1 %>% names() %>% str_subset("PAIN")
+for(var in w1_pain_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_pain_vars)
+```
+
+\pagebreak
+
+## Smoking
+
+<br>
+
+```{r}
+w1_smk_vars <- dat_w1 %>% names() %>% str_subset("SMK")
+for(var in w1_smk_vars[-3]) {
+  codebook(dat_w1, var)
+}
+codebook(dat_w1, w1_smk_vars[3], categorical = FALSE)
+all_vars <- c(all_vars, w1_smk_vars)
+```
+
+\pagebreak
+
+## Alcohol Consumption
+
+<br>
+
+```{r}
+w1_alc_vars <- dat_w1 %>% names() %>% str_subset("ALC")
+for(var in w1_alc_vars) {
+  codebook(dat_w1, var)
+}
+all_vars <- c(all_vars, w1_alc_vars)
+```
+
+\pagebreak
+
+## Physical Measurements
+
+<br>
+
+```{r}
+w1_phys_vars <- dat_w1 %>% names() %>% str_subset("_PHYS_")
+w1_phys_cat <- rep(TRUE, length(w1_phys_vars))
+w1_phys_cat[c(2,6:11,20,22:26,28,41:43)] <- FALSE
+for(i in 1:length(w1_phys_vars)) {
+  codebook(dat_w1, w1_phys_vars[i], w1_phys_cat[i])
+}
+all_vars <- c(all_vars, w1_phys_vars)
+```
+
+\pagebreak
+
+## NIH Toolbox
+
+<br>
+
+```{r}
+w1_NIHTLBX_vars <- dat_w1 %>% names() %>% str_subset("NIHTLBX")
+codebook(dat_w1, "W1_NIHTLBX_NIH_Toolbox")
+codebook(dat_w1, "W1_NIHTLBX_psmt_form")
+for(var in str_subset(w1_NIHTLBX_vars, "NIH_Toolbox|form", negate = TRUE)) {
+  codebook(dat_w1, var, categorical = FALSE)
+}
+all_vars <- c(all_vars, w1_NIHTLBX_vars)
+```
+
+\pagebreak
+
+## SENAS
+
+<br>
+
+```{r}
+w1_SENAS_vars <- dat_w1 %>% names() %>% str_subset("SENAS")
+codebook(dat_w1, "W1_SENAS_SENAS")
+codebook(dat_w1, "W1_SENAS_vmform")
+codebook(dat_w1, "W1_SENAS_lsform")
+codebook(dat_w1, "W1_SENAS_telephone")
+for(var in str_subset(w1_SENAS_vars, "SENAS_SENAS|vmform|lsform|telephone", 
+                      negate = TRUE)) {
+  codebook(dat_w1, var, categorical = FALSE)
+}
+all_vars <- c(all_vars, w1_SENAS_vars)
+```
+
+\pagebreak
+
+## Cognitive Impairment Probabilities 
+
+<br>
+
+```{r}
+w1_COGIMP_PROB_vars <- dat_w1 %>% names() %>% str_subset("COGIMP_PROB")
+for(var in w1_COGIMP_PROB_vars) {
+  codebook(dat_w1, var, categorical = FALSE)
+}
+all_vars <- c(all_vars, w1_COGIMP_PROB_vars)
+```
+
+\pagebreak
+
+## Interviewer Comments
+
+<br>
+
+The labels for these categorical comment variables are long and many share 
+the same labels. These labels are detailed at the end of this section. 
+
+```{r}
+w1_INTFDBK_vars <- dat_w1 %>% names() %>% str_subset("INTFDBK")
+all_vars <- c(all_vars, w1_INTFDBK_vars)
+var_values_list <- c()
+for(var in w1_INTFDBK_vars) {
+  codebook(dat_w1, var, print.values = FALSE)
+  var_value <- dictionary %>% 
+    filter(var_name == var) %>% 
+    pull(values)
+  var_values_list <- c(var_values_list, var_value)
+}
+var_values_label <- unique(var_values_list)
+var_label_index <- c()
+for (i in 1:length(var_values_list)) {
+  var_label_index <- c(var_label_index, 
+                       match(var_values_list[i], var_values_label))
+}
+```
+
+Values Label for Interviewer Comments:
+
+```{r}
+for (i in 1:length(var_values_label)) {
+  print(paste0("Label ", i))
+  print(var_values_label[i])
+  cat("\n\n")
+}
+```
+
+```{r}
+tibble(
+  "Variable" = w1_INTFDBK_vars,
+  "Values Label" = var_label_index
+) %>% print(n = Inf)
+```
+
+```{r check}
+length(names(dat_w1))
+names(dat_w1)[!names(dat_w1) %in% unique(all_vars)]
+# all variables should be summarized in this codebook other than SUBJID
+```

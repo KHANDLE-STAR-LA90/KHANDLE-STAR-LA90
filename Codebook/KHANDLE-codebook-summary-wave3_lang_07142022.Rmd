@@ -1,0 +1,113 @@
+---
+title: "KHANDLE Codebook"
+subtitle: "Wave 3 Language Summary"
+# author: "Juliet Yixuan Zhou"
+date: "07/15/2022"
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE}
+library(tidyverse)
+library(haven)
+library(epiDisplay)
+library(readxl)
+```
+
+```{r load dataset}
+path_to_box <- "/Users/julietzhou/Library/CloudStorage/Box-Box/"
+# update to the most recent data release
+date <- "20220714"
+path_to_folder <- "KHANDLE_coded_data/Raw_data_tables/All_Wave/transfer13_2022Jul15/"
+dat <- read_sas(
+  paste0(path_to_box, path_to_folder, "khandle_all_waves_", date, ".sas7bdat"))
+
+# dat_w1 <- dat %>% dplyr::select(STUDYID, starts_with("W1"), WAVE1)
+# dat_w3 <- dat %>% dplyr::select(STUDYID, starts_with("W2"), WAVE2)
+# dat_w3 <- dat %>% dplyr::select(STUDYID, starts_with("W3"), WAVE3)
+dat_lang <- dat %>% dplyr::select(STUDYID, starts_with("LANG"))
+# dat_mhc <- dat %>% dplyr::select(STUDYID, starts_with("mhc"))
+```
+
+```{r load data dictionary, message=FALSE, warning=FALSE}
+# load the data dictionary for variable name and variable description
+dictionary <- read_excel(
+  paste0(path_to_box, path_to_folder, 
+         "KHANDLE_All_Waves_", date, "_Data_Dictonary.xlsx"), 
+  .name_repair = "universal", 
+  sheet = "Data_Description", skip = 4) %>%
+  dplyr::select("PHI_check", 
+                "Variable...Name", "Variable...Description", "Values") %>% 
+  rename("var_name" = "Variable...Name", 
+         "var_desc" = "Variable...Description", 
+         "values"  = "Values")
+```
+
+\pagebreak
+
+Note:
+
+For each variable, the following information is pulled from the dictionary:
+
+*	Variable name
+*	Variable description
+*	Possible values and coding
+
+A frequency table is generated to accompany most of the variables, with the 
+following columns:
+
+*	Frequency
+*	%(NA+) and cum.%(NA+): relative and cumulative frequencies calculated from 
+  including the NA’s in the total
+*	%(NA-) and cum.%(NA-): relative and cumulative frequencies calculated from 
+  excluding the NA’s from the total
+
+If a variable is quantitative in nature, a histogram is used to replace the 
+frequency table, accompanied by the number of NA’s. 
+
+\pagebreak
+
+```{r codebook function}
+codebook <- function(data, var, categorical = TRUE, print.values = TRUE) {
+  var_description <- dictionary %>% 
+    filter(var_name == var) %>% 
+    # dplyr::select(var_desc)
+    pull(var_desc)
+  # var_description <- as.character(var_description)
+  var_values <- dictionary %>% 
+    filter(var_name == var) %>% 
+    # dplyr::select(values)
+    pull(values)
+  # var_values <- as.character(var_values)
+  # print out information to be included in the codebook
+  
+  print(str_c(var, ": ", var_description))
+  if (!is.na(var_values) & print.values) {print(var_values)}
+  
+  if(categorical) {
+    # print the frequency table
+    # with absolute, relative and cumulative frequencies
+    print(str_c("Frequency table of ", var))
+    tab1(data[var], graph = FALSE, cum.percent = TRUE) %>% print()
+  } else {
+    x <- data[var] %>% as_vector()
+    na_count <- sum(is.na(x))
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    try(hist(x, main = NULL, xlab = paste(var)))
+  }
+  
+  cat("\n\n")
+}
+```
+
+
+```{r language}
+for (var in names(dat_lang)[-1]) {
+  codebook(dat_lang, var)
+}
+```

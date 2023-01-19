@@ -1,0 +1,267 @@
+---
+title: "STAR Codebook"
+author: "Yixuan Zhou (UID 505 524 487)"
+date: "25/05/2022"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE}
+library(tidyverse)
+library(haven)
+library(epiDisplay)
+library(readxl)
+```
+
+```{r load dataset, message=FALSE, warning=FALSE}
+path_to_box <- "/Users/julietzhou/Library/CloudStorage/Box-Box/"
+path_to_folder <- 
+  "STAR_coded_data/Raw_data_tables/STAR_AllWave_data/STAR_AllWave_data_20220310/"
+dat <- read_sas(
+  paste0(path_to_box, path_to_folder, "star_all_waves_20220309.sas7bdat"))
+
+
+dat_wave <- dat %>% dplyr::select(STUDYID, starts_with("STAR"))
+dat_w1 <- dat %>% dplyr::select(STUDYID, starts_with("W1"))
+dat_w2 <- dat %>% dplyr::select(STUDYID, starts_with("W2"))
+dat_w3 <- dat %>% dplyr::select(STUDYID, starts_with("W3"))
+dat_mhc <- dat %>% dplyr::select(STUDYID, starts_with("mhc"))
+# 
+# dat_w1 <- dat_w1 %>% dplyr::select(all_of(names(dat_w1) %>% sort()))
+# dat_w2 <- dat_w2 %>% dplyr::select(all_of(names(dat_w2) %>% sort()))
+# dat_w3 <- dat_w3 %>% dplyr::select(all_of(names(dat_w3) %>% sort()))
+# dat_mhc <- dat_mhc %>% dplyr::select(all_of(names(dat_mhc) %>% sort()))
+```
+
+```{r load data dictionary, include=FALSE}
+# load the data dictionary for variable name and variable description
+dictionary <- read_excel(
+  paste0(path_to_box, path_to_folder, 
+         "STAR_All_Waves_20220309_Data_Dictionary.xlsx"), 
+  .name_repair = "universal", 
+                         sheet = "Data_Description", skip = 5) %>%
+  dplyr::select("PHI_check", 
+                "Variable...Name", "Variable...Description", "Values") %>% 
+  rename("var_name" = "Variable...Name", 
+         "var_desc" = "Variable...Description", 
+         "values"  = "Values")
+```
+
+```{r wave 1, eval=FALSE}
+# loop through all variables
+
+for (var in names(dat_w1)[-1]) {
+  # get variable description and possible values from the dictionary
+  var_description <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(var_desc)
+  var_description <- as.character(var_description)
+  var_values <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(values)
+  var_values <- as.character(var_values)
+  # print out information to be included in the codebook
+  print(str_c(var, ": ", var_description))
+  if(!is.na(var_values)){print(var_values)} 
+  
+  if (var %in% c(
+    # SENAS forms
+    "W1_SENAS_lsform", "W1_SENAS_vmform", "W1_SENAS_SENAS", 
+    # D_SENAS variables that end with MEAN or STDEV 
+    "W1_D_SENAS_AVG_COGNITION_MEAN", "W1_D_SENAS_AVG_COGNITION_STDEV",
+    "W1_D_SENAS_EXEC_MEAN", "W1_D_SENAS_EXEC_STDEV", 
+    "W1_D_SENAS_SEM_MEAN", "W1_D_SENAS_SEM_STDEV", 
+    "W1_D_SENAS_VRMEM_MEAN", "W1_D_SENAS_VRMEM_STDEV")) {
+    
+    print(str_c("Frequency table of ", var))
+    tab1(dat_w1[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+    } else if (str_detect(var, "SENAS") | 
+      str_detect(var, "GRIPL") | str_detect(var, "GRIPR") | 
+      var %in% c("W1_TO_W2_DAYS", "W1_TO_W3_DAYS", 
+                 "W1_FIRST_JOB_AGE_YEARS", "W1_INTERVIEW_AGE", 
+                 "W1_PHYS_ARMS1", "W1_PHYS_WAIST1", 
+                 "W1_PHYS_WLKTIME1", "W1_PHYS_WLKTIME2",
+                 "W1_PHYS_LUNG1", "W1_PHYS_LUNG2", "W1_PHYS_LUNG3",
+                 "W1_PHYS_HEAD1", "W1_PHYS_HIP1", "W1_PHYS_NECK1")) {
+    
+    x <- dat_w1[var] %>% as_vector()
+    na_count <- sum(is.na(x))
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    try(hist(x, main = paste(var)))
+    
+  } else {
+    
+    # print the frequency table
+    # with absolute, relative and cumulative frequencies
+    print(str_c("Frequency table of ", var))
+    tab1(dat_w1[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+  }
+  
+  cat("\n\n")
+}
+```
+
+```{r wave 2, eval=FALSE}
+for (var in names(dat_w2)[-1]) {
+  # get variable description and possible values from the dictionary
+  var_description <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(var_desc)
+  var_description <- as.character(var_description)
+  var_values <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(values)
+  var_values <- as.character(var_values)
+  # print out information to be included in the codebook
+  print(str_c(var, ": ", var_description))
+  if(!is.na(var_values)){print(var_values)} 
+  
+  if (var %in% c(
+    # SENAS forms
+    "W2_SENAS_lsform", "W2_SENAS_vmform", "W2_SENAS_SENAS", 
+    # D_SENAS variables that end with MEAN or STDEV 
+    "W2_D_SENAS_AVG_COGNITION_MEAN", "W2_D_SENAS_AVG_COGNITION_STDEV",
+    "W2_D_SENAS_EXEC_MEAN", "W2_D_SENAS_EXEC_STDEV", 
+    "W2_D_SENAS_SEM_MEAN", "W2_D_SENAS_SEM_STDEV", 
+    "W2_D_SENAS_VRMEM_MEAN", "W2_D_SENAS_VRMEM_STDEV")) {
+    
+    print(str_c("Frequency table of ", var))
+    tab1(dat_w2[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+    } else if (str_detect(var, "SENAS") | 
+      str_detect(var, "GRIPL") | str_detect(var, "GRIPR") | 
+      var %in% c("W2_TO_W3_DAYS", 
+                 "W2_FIRST_JOB_AGE_YEARS", "W2_INTERVIEW_AGE", 
+                 "W2_PHYS_ARMS1", "W2_PHYS_WAIST1", 
+                 "W2_PHYS_WLKTIME1", "W2_PHYS_WLKTIME2",
+                 "W2_PHYS_LUNG1", "W2_PHYS_LUNG2", "W2_PHYS_LUNG3",
+                 "W2_PHYS_HEAD1", "W2_PHYS_HIP1", "W2_PHYS_NECK1")) {
+    
+    x <- dat_w2[var] %>% as_vector()
+    na_count <- sum(is.na(x))
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    try(hist(x, main = paste(var)))
+        
+  } else if (var %in% c("W2_COLLEGE_FRSTYR_NAME", "W2_COLLEGE_MAJOR_DESC",
+                        "W2_COLLEGE_NAME")) {
+    
+    x <- dat_w2[var] %>% as_vector()
+    na_count <- sum(x == "")
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    print("Distribution omitted here due to a large number of distinct values")
+    
+  } else if (var %in% c("W2_SCHOOL_STUDENTS_1_TEXT", "W2_SCHOOL_STUDENTS_6_TEXT",
+                        "W2_SCHOOL_STUDENTS_9_TEXT", "W2_SCHOOL_STUDENTS_12_TEXT")) {
+    
+    # display unique values and number of missings, no distributions 
+    x <- dat_w2[var] %>% as_vector()
+    na_count <- sum(x == "")
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    print("Possible values: ")
+    print(unique(x))
+    
+  } else {
+    
+    # print the frequency table
+    # with absolute, relative and cumulative frequencies
+    print(str_c("Frequency table of ", var))
+    tab1(dat_w2[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+  }
+  
+  cat("\n\n")
+}
+```
+
+```{r wave 3, eval=FALSE}
+# loop through all variables
+
+for (var in names(dat_w3)[-1]) {
+  # get variable description and possible values from the dictionary
+  var_description <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(var_desc) 
+  var_description <- as.character(var_description[1,1])
+  var_values <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(values)
+  var_values <- as.character(var_values[1,1])
+  # print out information to be included in the codebook
+  print(str_c(var, ": ", var_description))
+  if(!is.na(var_values)){print(var_values)} 
+  
+  if (var %in% c(
+    # SENAS forms
+    "W3_SENAS_lsform", "W3_SENAS_vmform", "W3_SENAS_SENAS"
+    )) {
+    
+    print(str_c("Frequency table of ", var))
+    tab1(dat_w3[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+    } else if (str_detect(var, "SENAS") | 
+      str_detect(var, "GRIPL") | str_detect(var, "GRIPR") | 
+      var %in% c("W3_INTERVIEW_AGE")) {
+    
+    x <- dat_w3[var] %>% as_vector()
+    na_count <- sum(is.na(x))
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    if (na_perc != 1) {try(hist(x, main = paste(var)))}
+    
+  } else {
+    
+    # print the frequency table
+    # with absolute, relative and cumulative frequencies
+    print(str_c("Frequency table of ", var))
+    tab1(dat_w3[var], graph = FALSE, cum.percent = TRUE) %>% print()
+    
+  }
+  
+  cat("\n\n")
+}
+```
+
+```{r mhc, eval=TRUE}
+for (var in names(dat_mhc)[-1]) {
+  var_description <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(var_desc)
+  var_description <- as.character(var_description)
+  var_values <- dictionary %>% 
+    filter(var_name == var) %>% 
+    dplyr::select(values)
+  var_values <- as.character(var_values)
+  # print out information to be included in the codebook
+  print(str_c(var, ": ", var_description))
+  if (!is.na(var_values)) {print(var_values)} 
+  
+  if (
+    str_detect(
+      var, 
+      "(bmi)|(chol)|(diastolic)|(systolic)|(exam_age)|(fasting)|(glucose)|(height)|(weight)"
+      )
+    ) {
+    x <- dat_mhc[var] %>% as_vector()
+    na_count <- sum(is.na(x))
+    na_perc <- round(na_count/length(x), digits = 3)
+    print(str_c("NA Frequency: ", na_count, " (", 100*na_perc, "%)"))
+    if (na_perc != 1) {try(hist(x, main = paste(var)))}
+  } else {
+    print(str_c("Frequency table of ", var))
+    tab1(dat_mhc[var], graph = FALSE, cum.percent = TRUE) %>% print()
+  }
+  cat("\n\n")
+}
+
+
+```
+
