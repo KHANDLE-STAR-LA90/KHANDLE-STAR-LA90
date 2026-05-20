@@ -212,7 +212,7 @@ khandle_cycle1 <- khandle_cycle1 %>%
 # xtabs(~w4_participation, data = khandle_cycle1, addNA = T) #none
 # xtabs(~w5_participation, data = khandle_cycle1, addNA = T) #none
 
-##---- Identify for each subject their final save and age at final wave ----
+##---- Identify for each subject their final wave and age at final wave ----
 khandle_wave_max <- khandle_cycle1 %>% 
   pivot_longer(cols = ends_with("interview_age_final"),
                names_to = "wave",
@@ -271,11 +271,11 @@ fu_time_mat <- khandle_cycle1 %>%
 # fu_time_mat %>% filter(w5_participation == 1,
 #                        !is.na(age_at_death_final)) %>% View()
 
-# 94 people with interview completed & acquired abut missing wave 5 age
+# 94 people with interview completed & acquired but missing wave 5 age
 # n = 5 final wave = 3, n = 89 final wave = 4
 # considered part of study so ltfu_outcome = 0, infer age at w5
 # fu_time_mat %>% filter(dstatus_visit == "interview completed",
-#                        is.na(w4_interview_age_final)) %>% View()
+#                        is.na(w5_interview_age_final)) %>% View()
 
 fu_time_mat <- fu_time_mat %>% 
   mutate(
@@ -290,6 +290,7 @@ fu_time_mat <- fu_time_mat %>%
       TRUE ~ NA
     )
   )
+
 
 # 2. all others have ltfu_outcome = 1 (not death) or 2 (death)
 # a. dstatus_visit = firm refusal
@@ -326,7 +327,7 @@ fu_time_mat <- fu_time_mat %>%
     ltfu_outcome = case_when(
       !is.na(ltfu_outcome) ~ ltfu_outcome, 
       # died after study--considered refusal to participate? 
-      dstatus_visit %in% "deceased" & inferred_time < age_at_death_final ~ 1, 
+      dstatus_visit %in% "deceased" & inferred_time < age_at_death_final ~ 1,  # JF NOTE: why might we want to prioritize inferred time over age at death if we know they die?
       dstatus_visit %in% "deceased" ~ 2, # check: NA case IS considered dead
       TRUE ~ NA
     ), 
