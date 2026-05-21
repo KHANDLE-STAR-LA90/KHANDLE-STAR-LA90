@@ -347,7 +347,7 @@ fu_time_mat <- fu_time_mat %>%
   mutate(
     ltfu_outcome = case_when(
       !is.na(ltfu_outcome) ~ ltfu_outcome,
-      dstatus_visit %in% "available for interview" & final_wave < 3 ~ 1, # added rule
+      dstatus_visit %in% "available for interview" & final_wave < 3 ~ 1, # added rule; JF NOTE: Double check; I thought we do LTFU if they miss 2 wavess?
       dstatus_visit %in% "available for interview" ~ 0,
       TRUE ~ NA
     ),
@@ -367,7 +367,7 @@ fu_time_mat <- fu_time_mat %>%
     ltfu_outcome = case_when(
       !is.na(ltfu_outcome) ~ ltfu_outcome,
       # w4 age and no refusal/death, part of study
-      dstatus_visit %in% "on hold" & final_wave < 3 ~ 1, # changed rule
+      dstatus_visit %in% "on hold" & final_wave < 3 ~ 1, # changed rule; JF NOTE: See comment on line 350
       dstatus_visit %in% "on hold" & inferred_time > age_at_death_final ~ 2,
       dstatus_visit %in% "on hold" & inferred_time > age_at_refuse_final ~ 1,
       dstatus_visit %in% "on hold" ~ 0, 
