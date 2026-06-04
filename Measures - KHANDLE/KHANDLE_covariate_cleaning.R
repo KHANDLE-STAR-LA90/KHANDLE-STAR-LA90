@@ -3,7 +3,7 @@
 # Adapted by: Ami Sheth
 
 ## ---- Package loading + options ----
-rm(list = ls())
+# rm(list = ls())
 
 if (!require("pacman")){
   install.packages("pacman", repos = 'http://cran.us.r-project.org')
@@ -11,10 +11,10 @@ if (!require("pacman")){
 p_load("readr", "tidyverse", "janitor", "haven")
 
 ##---- Read in pathnames ----
-source(here::here("scripts", "0.0_paths.R"))
+# source(here::here("scripts", "0.0_paths.R"))
 
 ##---- Read in cleaned KHANDLE & EHR data ----
-source(here::here("scripts", "KHANDLE_data_cleaning.R"))
+# source(here::here("scripts", "KHANDLE_data_cleaning.R"))
 
 ##---- Universal covariate cleaning ----
 # Cleaning health, hearing/vision, and disability measures
