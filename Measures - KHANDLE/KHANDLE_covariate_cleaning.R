@@ -84,6 +84,7 @@ khandle_cycle1_cleaned <- khandle_cycle1_cleaned %>%
       w1_edu_education == 3 ~ 16, # bachelors
       w1_edu_education == 4 ~ 18, # masters
       w1_edu_education == 5 ~ 20, # doctoral degree
+      w1_edu_ged == 2 ~ 12, # high school diploma
       TRUE ~ NA_integer_
     ),
     # create a flag for education for certification with an instructor 
