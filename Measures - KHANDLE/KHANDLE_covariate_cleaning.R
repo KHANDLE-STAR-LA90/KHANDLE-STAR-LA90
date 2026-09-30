@@ -90,11 +90,12 @@ khandle_cycle1_cleaned <- khandle_cycle1_cleaned %>%
     # that lasted 6 months or more (counts as 1 year)
     cert.flag = ifelse(w1_edu_trncert == 2 & w1_edu_longcert == 4, 1, 0), 
     ## Version 2: includes yrs of education from certification
+    # this is the main version to use
     edu_yrs_cert = ifelse(
       edu_yrs <= 12 & !is.na(cert.flag), 
       edu_yrs + cert.flag, 
       edu_yrs
-    )
+    ),
     # Parental education
     maternal_edu = case_when(
       w1_maternal_education %in% c(66, 88, 99) ~ NA_real_, 
